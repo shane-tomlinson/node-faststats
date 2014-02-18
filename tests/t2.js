@@ -1,4 +1,4 @@
-var Stats = require('fast-stats').Stats;
+var Stats = require('../faststats').Stats;
 
 var a = new Stats();
 for(var i=0; i<11; i++) {

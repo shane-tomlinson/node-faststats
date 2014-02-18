@@ -1,5 +1,5 @@
 var assert = require('assert'),
-    Stats = require('fast-stats').Stats;
+    Stats = require('../faststats').Stats;
 
 var s1 = new Stats({buckets: [1, 2, 3, 5, 8, 13], store_data: false});
 for(var i=0; i<20; i++)

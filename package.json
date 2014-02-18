@@ -24,8 +24,11 @@
     "type": "git",
     "url": "git://github.com/bluesmoon/node-faststats.git"
   },
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gauss": "~0.2.9"
+  },
   "engines": {
     "node": "*"
   }

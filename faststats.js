@@ -70,14 +70,14 @@ Stats.prototype = {
 			this.data = [];
 
 		this.length = 0;
-	
+
 		this.sum = 0;
 		this.sum_of_squares = 0;
 		this.sum_of_logs = 0;
 		this.sum_of_square_of_logs = 0;
 		this.zeroes = 0;
 		this.max = this.min = null;
-	
+
 		this._reset_cache();
 
 		return this;
@@ -209,15 +209,24 @@ Stats.prototype = {
 	},
 
 	push: function() {
-		var i, a, args=Array.prototype.slice.call(arguments, 0);
-		if(args.length && args[0] instanceof Array)
-			args = args[0];
-		for(i=0; i<args.length; i++) {
-			a = args[i];
+    var a = arguments[0];
+    var isArray = a instanceof Array;
+    if (arguments.length === 1 && !isArray) {
 			if(this._config.store_data)
 				this.data.push(a);
 			this._add_cache(a);
-		}
+    } else {
+      var i = 0;
+      var args = isArray ? a : Array.prototype.slice.call(arguments, 0);
+      var length = args.length;
+      while (i < length) {
+        a = args[i];
+        if(this._config.store_data)
+          this.data.push(a);
+        this._add_cache(a);
+        ++i;
+      }
+    }
 
 		return this;
 	},
@@ -393,7 +402,7 @@ Stats.prototype = {
 		}
 
 		return d;
-		
+
 	},
 
 	percentile: function(p) {
@@ -476,9 +485,9 @@ Stats.prototype = {
 
 		q1 = this.percentile(25);
 		q3 = this.percentile(75);
-	
+
 		fw = (q3-q1)*1.5;
-	
+
 		return this.band_pass(q1-fw, q3+fw, true);
 	},
 
@@ -496,7 +505,7 @@ Stats.prototype = {
 		if(this._config.store_data) {
 			if(this._data_sorted === null)
 				this._data_sorted = this.data.slice(0).sort(asc);
-	
+
 			for(i=0; i<this.length && (this._data_sorted[i] < high || (!open && this._data_sorted[i] === high)); i++) {
 				if(this._data_sorted[i] > low || (!open && this._data_sorted[i] === low)) {
 					b.push(this._data_sorted[i]);

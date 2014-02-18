@@ -1,6 +1,6 @@
 var assert = require('assert');
 
-var Stats = require('fast-stats').Stats;
+var Stats = require('../faststats').Stats;
 Array = require('gauss').Vector;
 
 var a = [], b = new Stats();

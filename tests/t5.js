@@ -1,5 +1,5 @@
 var assert = require('assert'),
-    Stats = require('fast-stats').Stats;
+    Stats = require('../faststats').Stats;
 
 var s = new Stats();
 

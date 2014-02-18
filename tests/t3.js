@@ -1,5 +1,5 @@
 var assert = require('assert'),
-    Stats = require('fast-stats').Stats;
+    Stats = require('../faststats').Stats;
 
 var s1, s2, s3, s4;
 s1 = new Stats().push(1, 2, 3, 10, 8, 4, 3);
